@@ -1,55 +1,162 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroWarehouse from "@/assets/hero-warehouse.jpg";
 
 const Hero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Track scroll progress through the entire hero section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Smooth spring animation for natural motion
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 25,
+    restDelta: 0.001
+  });
+
+  // 3D perspective transforms for the background image
+  const backgroundScale = useTransform(smoothProgress, [0, 0.5, 1], [1, 1.15, 1.3]);
+  const backgroundY = useTransform(smoothProgress, [0, 1], ["0%", "30%"]);
+  const backgroundRotateX = useTransform(smoothProgress, [0, 0.3, 0.6, 1], [0, 5, 10, 15]);
+  
+  // Content transforms - moves up and fades as you scroll
+  const contentY = useTransform(smoothProgress, [0, 0.4, 0.8], [0, -50, -150]);
+  const contentOpacity = useTransform(smoothProgress, [0, 0.3, 0.6], [1, 0.8, 0]);
+  const contentScale = useTransform(smoothProgress, [0, 0.5, 1], [1, 0.95, 0.85]);
+  
+  // Overlay darkness increases as you scroll
+  const overlayOpacity = useTransform(smoothProgress, [0, 0.5, 1], [0.5, 0.6, 0.75]);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroWarehouse}
-          alt="Modern logistics warehouse"
-          className="w-full h-full object-cover"
+    <section 
+      ref={containerRef}
+      className="relative flex items-start overflow-hidden"
+      style={{ height: "300vh" }} // 3x viewport height for extended scroll
+    >
+      {/* Sticky container that stays in view */}
+      <div className="sticky top-0 w-full h-screen overflow-hidden" style={{ perspective: "1500px" }}>
+        {/* Background Image with 3D transforms */}
+        <motion.div 
+          className="absolute inset-0 origin-center"
+          style={{
+            scale: backgroundScale,
+            y: backgroundY,
+            rotateX: backgroundRotateX,
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <img
+            src={heroWarehouse}
+            alt="Modern logistics warehouse"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Dynamic dark overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-foreground"
+          style={{ opacity: overlayOpacity }}
         />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 hero-dark-overlay" />
-      </div>
 
-      {/* Content */}
-      <div className="relative container mx-auto px-4 lg:px-8 pt-20">
-        <div className="max-w-3xl">
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white"
-          >
-            An all-in-one fulfilment platform, for your cross-border logistics needs
-          </motion.h1>
+        {/* Floating decorative elements with parallax */}
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-primary/10 blur-3xl"
+          style={{
+            y: useTransform(smoothProgress, [0, 1], [0, -200]),
+            opacity: useTransform(smoothProgress, [0, 0.5, 1], [0.3, 0.5, 0]),
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
+          style={{
+            y: useTransform(smoothProgress, [0, 1], [0, -300]),
+            opacity: useTransform(smoothProgress, [0, 0.5, 1], [0.2, 0.4, 0]),
+          }}
+        />
 
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed"
-          >
-            Fulflit is the platform that coordinates global logistics from factory to customer door — 
-            empowering businesses to ship anywhere, sell everywhere and grow faster.
-          </motion.p>
+        {/* Content with scroll-based transforms */}
+        <motion.div 
+          className="relative h-full container mx-auto px-4 lg:px-8 flex items-center"
+          style={{
+            y: contentY,
+            opacity: contentOpacity,
+            scale: contentScale,
+          }}
+        >
+          <div className="max-w-3xl pt-20">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="inline-block px-4 py-2 mb-6 text-sm font-medium text-primary bg-primary/20 rounded-full backdrop-blur-sm">
+                Global Fulfillment Solutions
+              </span>
+            </motion.div>
 
+            <motion.h1
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white"
+            >
+              From Warehouse to Doorstep,{" "}
+              <span className="text-primary">Seamlessly</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed"
+            >
+              Fulflit is the platform that coordinates global logistics from factory to customer door — 
+              empowering businesses to ship anywhere, sell everywhere and grow faster.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap gap-4"
+            >
+              <Button 
+                variant="hero" 
+                size="xl"
+                onClick={() => window.open("https://core.fulflit.com/customer/register", "_blank")}
+              >
+                Get Started Today
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+              <Button variant="heroOutline" size="xl">
+                Watch Demo
+              </Button>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          style={{
+            opacity: useTransform(smoothProgress, [0, 0.2], [1, 0]),
+          }}
+        >
+          <span className="text-white/60 text-sm font-medium">Scroll to explore</span>
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-1"
           >
-            <Button variant="hero" size="xl">
-              Share your needs with us
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+            <motion.div className="w-1.5 h-3 bg-primary rounded-full" />
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
