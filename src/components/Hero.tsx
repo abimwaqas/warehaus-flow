@@ -3,6 +3,17 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroWarehouse from "@/assets/hero-warehouse.jpg";
+import fleetVans from "@/assets/fleet-vans.jpg";
+import cargoShip from "@/assets/cargo-ship.jpg";
+import cargoPlane from "@/assets/cargo-plane.jpg";
+import deliveryVan from "@/assets/delivery-van.jpg";
+
+const fleetImages = [
+  { src: fleetVans, alt: "Distribution fleet", label: "Distribution" },
+  { src: cargoShip, alt: "Cargo ship", label: "Sea Freight" },
+  { src: cargoPlane, alt: "Cargo airplane", label: "Air Freight" },
+  { src: deliveryVan, alt: "Last-mile delivery", label: "Last Mile" },
+];
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,6 +43,10 @@ const Hero = () => {
   
   // Overlay darkness increases as you scroll
   const overlayOpacity = useTransform(smoothProgress, [0, 0.5, 1], [0.5, 0.6, 0.75]);
+
+  // Fleet images animation transforms - staggered parallax
+  const fleetContainerY = useTransform(smoothProgress, [0, 0.3, 0.7], [100, 0, -50]);
+  const fleetContainerOpacity = useTransform(smoothProgress, [0, 0.2, 0.5, 0.8], [0, 1, 1, 0.3]);
 
   return (
     <section 
@@ -82,14 +97,14 @@ const Hero = () => {
 
         {/* Content with scroll-based transforms */}
         <motion.div 
-          className="relative h-full container mx-auto px-4 lg:px-8 flex items-center"
+          className="relative h-full container mx-auto px-4 lg:px-8 flex flex-col justify-center"
           style={{
             y: contentY,
             opacity: contentOpacity,
             scale: contentScale,
           }}
         >
-          <div className="max-w-3xl pt-20">
+          <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -124,7 +139,6 @@ const Hero = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap gap-4"
             >
               <Button 
                 variant="hero" 
@@ -134,18 +148,67 @@ const Hero = () => {
                 Get Started Today
                 <ArrowRight className="w-5 h-5" />
               </Button>
-              <Button variant="heroOutline" size="xl">
-                Watch Demo
-              </Button>
             </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Fleet Images Gallery with Scroll Animation */}
+        <motion.div
+          className="absolute bottom-20 left-0 right-0 px-4 lg:px-8"
+          style={{
+            y: fleetContainerY,
+            opacity: fleetContainerOpacity,
+          }}
+        >
+          <div className="container mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {fleetImages.map((image, index) => (
+                <motion.div
+                  key={image.label}
+                  className="relative overflow-hidden rounded-xl"
+                  style={{
+                    y: useTransform(
+                      smoothProgress,
+                      [0, 0.2, 0.5],
+                      [80 + index * 20, 0, -20 - index * 10]
+                    ),
+                    scale: useTransform(
+                      smoothProgress,
+                      [0, 0.25, 0.5],
+                      [0.8, 1, 0.95]
+                    ),
+                    rotateY: useTransform(
+                      smoothProgress,
+                      [0, 0.3, 0.6],
+                      [index % 2 === 0 ? -15 : 15, 0, index % 2 === 0 ? 5 : -5]
+                    ),
+                  }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                >
+                  <div className="aspect-video relative group">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
+                    <span className="absolute bottom-3 left-3 text-white font-medium text-sm md:text-base">
+                      {image.label}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
         {/* Scroll indicator */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
           style={{
-            opacity: useTransform(smoothProgress, [0, 0.2], [1, 0]),
+            opacity: useTransform(smoothProgress, [0, 0.15], [1, 0]),
           }}
         >
           <span className="text-white/60 text-sm font-medium">Scroll to explore</span>
