@@ -21,23 +21,23 @@ const Hero = () => {
   });
 
   // 3D perspective transforms - ZOOM OUT effect (starts zoomed in, zooms out on scroll)
-  const backgroundScale = useTransform(smoothProgress, [0, 0.5, 1], [1.3, 1.15, 1]);
-  const backgroundY = useTransform(smoothProgress, [0, 1], ["0%", "20%"]);
-  const backgroundRotateX = useTransform(smoothProgress, [0, 0.3, 0.6, 1], [0, 3, 6, 10]);
+  const backgroundScale = useTransform(smoothProgress, [0, 0.7, 1], [1.25, 1.1, 1]);
+  const backgroundY = useTransform(smoothProgress, [0, 1], ["0%", "15%"]);
+  const backgroundRotateX = useTransform(smoothProgress, [0, 0.5, 1], [0, 4, 8]);
   
   // Content transforms - moves up and fades as you scroll
-  const contentY = useTransform(smoothProgress, [0, 0.4, 0.8], [0, -50, -150]);
-  const contentOpacity = useTransform(smoothProgress, [0, 0.3, 0.6], [1, 0.8, 0]);
-  const contentScale = useTransform(smoothProgress, [0, 0.5, 1], [1, 0.95, 0.85]);
+  const contentY = useTransform(smoothProgress, [0, 0.5, 1], [0, -30, -80]);
+  const contentOpacity = useTransform(smoothProgress, [0, 0.4, 0.8], [1, 0.9, 0]);
+  const contentScale = useTransform(smoothProgress, [0, 0.6, 1], [1, 0.97, 0.9]);
   
   // Overlay darkness increases as you scroll
-  const overlayOpacity = useTransform(smoothProgress, [0, 0.5, 1], [0.5, 0.55, 0.65]);
+  const overlayOpacity = useTransform(smoothProgress, [0, 0.6, 1], [0.5, 0.55, 0.6]);
 
   return (
     <section 
       ref={containerRef}
       className="relative flex items-start overflow-hidden"
-      style={{ height: "300vh" }} // 3x viewport height for extended scroll
+      style={{ height: "150vh" }} // 1.5x viewport height for tighter scroll
     >
       {/* Sticky container that stays in view */}
       <div className="sticky top-0 w-full h-screen overflow-hidden" style={{ perspective: "1500px" }}>
