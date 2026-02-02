@@ -3,6 +3,9 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroWarehouse from "@/assets/hero-warehouse.jpg";
+import cargoShip from "@/assets/cargo-ship.jpg";
+import cargoPlane from "@/assets/cargo-plane.jpg";
+import fleetVans from "@/assets/fleet-vans.jpg";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,40 +23,84 @@ const Hero = () => {
     restDelta: 0.001
   });
 
-  // 3D perspective transforms - ZOOM OUT effect (starts zoomed in, zooms out on scroll)
-  const backgroundScale = useTransform(smoothProgress, [0, 0.7, 1], [1.25, 1.1, 1]);
-  const backgroundY = useTransform(smoothProgress, [0, 1], ["0%", "15%"]);
-  const backgroundRotateX = useTransform(smoothProgress, [0, 0.5, 1], [0, 4, 8]);
-  
+  // Image transitions based on scroll progress
+  // 0-0.33: Warehouse | 0.33-0.66: Sea + Air split | 0.66-1: Fleet vans
+  const warehouseOpacity = useTransform(smoothProgress, [0, 0.25, 0.35], [1, 1, 0]);
+  const splitOpacity = useTransform(smoothProgress, [0.25, 0.35, 0.6, 0.7], [0, 1, 1, 0]);
+  const vansOpacity = useTransform(smoothProgress, [0.6, 0.7, 1], [0, 1, 1]);
+
+  // Zoom out effect for each image stage
+  const warehouseScale = useTransform(smoothProgress, [0, 0.35], [1.2, 1]);
+  const splitScale = useTransform(smoothProgress, [0.25, 0.7], [1.15, 1]);
+  const vansScale = useTransform(smoothProgress, [0.6, 1], [1.2, 1]);
+
   // Content transforms - moves up and fades as you scroll
   const contentY = useTransform(smoothProgress, [0, 0.5, 1], [0, -30, -80]);
   const contentOpacity = useTransform(smoothProgress, [0, 0.4, 0.8], [1, 0.9, 0]);
   const contentScale = useTransform(smoothProgress, [0, 0.6, 1], [1, 0.97, 0.9]);
   
-  // Overlay darkness increases as you scroll
+  // Overlay darkness
   const overlayOpacity = useTransform(smoothProgress, [0, 0.6, 1], [0.5, 0.55, 0.6]);
 
   return (
     <section 
       ref={containerRef}
       className="relative flex items-start overflow-hidden"
-      style={{ height: "150vh" }} // 1.5x viewport height for tighter scroll
+      style={{ height: "250vh" }}
     >
       {/* Sticky container that stays in view */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden" style={{ perspective: "1500px" }}>
-        {/* Background Image with 3D transforms - ZOOM OUT on scroll */}
+      <div className="sticky top-0 w-full h-screen overflow-hidden">
+        
+        {/* Stage 1: Warehouse Image */}
         <motion.div 
-          className="absolute inset-0 origin-center"
+          className="absolute inset-0"
           style={{
-            scale: backgroundScale,
-            y: backgroundY,
-            rotateX: backgroundRotateX,
-            transformStyle: "preserve-3d",
+            opacity: warehouseOpacity,
+            scale: warehouseScale,
           }}
         >
           <img
             src={heroWarehouse}
             alt="Modern logistics warehouse"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Stage 2: Split View - Sea (left) + Air (right) */}
+        <motion.div 
+          className="absolute inset-0 flex"
+          style={{
+            opacity: splitOpacity,
+            scale: splitScale,
+          }}
+        >
+          <div className="w-1/2 h-full overflow-hidden">
+            <img
+              src={cargoShip}
+              alt="Cargo ship for sea freight"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="w-1/2 h-full overflow-hidden">
+            <img
+              src={cargoPlane}
+              alt="Cargo plane for air freight"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </motion.div>
+
+        {/* Stage 3: Fleet Vans */}
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            opacity: vansOpacity,
+            scale: vansScale,
+          }}
+        >
+          <img
+            src={fleetVans}
+            alt="Delivery van fleet"
             className="w-full h-full object-cover"
           />
         </motion.div>
