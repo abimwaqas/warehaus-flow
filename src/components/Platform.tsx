@@ -6,27 +6,27 @@ import platformDashboard from "@/assets/platform-dashboard.png";
 const features = [
   {
     icon: MapPin,
-    title: "📦 Orders",
+    title: "Orders",
     description: "Manage all international orders from one dashboard",
   },
   {
     icon: Workflow,
-    title: "📊 Inventory",
+    title: "Inventory",
     description: "Live stock visibility across all warehouses",
   },
   {
     icon: BarChart3,
-    title: "🚚 Smart Shipping",
+    title: "Smart Shipping",
     description: "Best route selected based on cost & speed",
   },
   {
     icon: MapPin,
-    title: "📍 Live Tracking",
+    title: "Live Tracking",
     description: "Track every order from pickup to delivery",
   },
   {
     icon: BarChart3,
-    title: "📈 Insights",
+    title: "Insights",
     description: "Delivery, COD, and cost performance at a glance",
   },
 ];
