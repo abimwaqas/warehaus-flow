@@ -22,7 +22,7 @@ const CTA = () => {
             End-to-End Fulfillment, Powered by Technology
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed">
-            Fulflit makes cross-border e-commerce simple, affordable, and reliable for SMEs.
+            Fulflit is a technology platform that orchestrates your entire fulfillment journey — from order placement and inventory to shipping, delivery, COD, and returns. Our system connects warehouses, carriers, and last-mile partners into one intelligent workflow, giving you real-time visibility, automated decisions, and full control without operational complexity. Ready to Ship Beyond Borders? Fulflit makes international e-commerce simple, affordable, and scalable for SMEs in Pakistan and the Middle East. Built as a Platform, Trusted as a Partner.
           </p>
           
           <motion.div
