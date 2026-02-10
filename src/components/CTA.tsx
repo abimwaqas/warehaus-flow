@@ -19,7 +19,7 @@ const CTA = () => {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-            Start Shipping Internationally with Confidence
+            End-to-End Fulfillment, Powered by Technology
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed">
             Fulflit makes cross-border e-commerce simple, affordable, and reliable for SMEs.
