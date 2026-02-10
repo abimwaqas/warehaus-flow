@@ -61,6 +61,10 @@ const Hero = () => {
   // Image 4: Fleet Vans - fades in and stays
   const opacity4 = useTransform(smoothProgress, [0.7, 0.85, 1], [0, 1, 1]);
 
+  // Text transitions - stage 1 (images 1&2) and stage 2 (images 3&4)
+  const text1Opacity = useTransform(smoothProgress, [0, 0.4, 0.5], [1, 1, 0]);
+  const text2Opacity = useTransform(smoothProgress, [0.4, 0.55, 1], [0, 1, 1]);
+
   // ============================================
   // CONTENT TRANSFORMS
   // Content stays centered but has subtle movement
@@ -162,33 +166,34 @@ const Hero = () => {
               </span>
             </motion.div>
 
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white"
-            >
-              From Warehouse to Doorstep,{" "}
-              <span className="text-primary">Seamlessly</span>
-            </motion.h1>
+            {/* Text Stage 1 */}
+            <motion.div style={{ opacity: text1Opacity }} className="absolute max-w-3xl">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
+                Sell Globally, Without{" "}
+                <span className="text-primary">Logistics Headaches</span>
+              </h1>
+              <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed">
+                Fulflit enables SME e-commerce brands to sell globally with ease. Our end-to-end logistics platform covers warehousing & fulfilment, cross-border shipping, last-mile delivery, and COD — all in one place.
+              </p>
+            </motion.div>
 
-            {/* Subheadline */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed"
-            >
-              Fulflit is the platform that coordinates global logistics from factory to customer door — 
-              empowering businesses to ship anywhere, sell everywhere and grow faster.
-            </motion.p>
+            {/* Text Stage 2 */}
+            <motion.div style={{ opacity: text2Opacity }} className="absolute max-w-3xl">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
+                Built for{" "}
+                <span className="text-primary">Growing Brands</span>
+              </h1>
+              <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed">
+                Expanding internationally is tough for small and mid-sized brands due to high shipping costs, delivery failures, COD challenges, and limited visibility. Fulflit solves this by giving SMEs access to regional warehouses, reliable delivery partners, and real-time tracking — without heavy upfront investment.
+              </p>
+            </motion.div>
 
             {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-[280px] md:mt-[260px] lg:mt-[300px]"
             >
               <Button 
                 variant="hero" 
