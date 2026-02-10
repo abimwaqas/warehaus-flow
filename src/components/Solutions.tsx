@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Warehouse, Ship, Banknote, ArrowRight, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Warehouse, Ship, Banknote, Send } from "lucide-react";
 
 const solutions = [
   {
@@ -73,13 +72,7 @@ const Solutions = () => {
 
                 {/* Content */}
                 <h3 className="text-2xl font-bold mb-4 text-foreground">{solution.title}</h3>
-                <p className="text-muted-foreground leading-relaxed mb-6">{solution.description}</p>
-
-                {/* CTA */}
-                <Button variant="ghost" className="group/btn p-0 h-auto text-primary hover:text-primary hover:bg-transparent">
-                  Learn more
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform duration-300" />
-                </Button>
+                <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
               </div>
             </motion.div>
           ))}

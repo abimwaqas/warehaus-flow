@@ -5,9 +5,7 @@ import { Button } from "@/components/ui/button";
 
 // Import all hero images - easily replaceable
 import heroWarehouse from "@/assets/hero-warehouse.jpg";
-import cargoShip from "@/assets/cargo-ship.jpg";
 import cargoPlane from "@/assets/cargo-plane.jpg";
-import fleetVans from "@/assets/fleet-vans.jpg";
 
 /**
  * Hero Section with Scroll-Based Animation
@@ -50,16 +48,10 @@ const Hero = () => {
   // ============================================
   
   // Image 1: Warehouse - visible at start, fades out
-  const opacity1 = useTransform(smoothProgress, [0, 0.2, 0.3], [1, 1, 0]);
+  const opacity1 = useTransform(smoothProgress, [0, 0.4, 0.55], [1, 1, 0]);
   
-  // Image 2: Cargo Ship - fades in, then out
-  const opacity2 = useTransform(smoothProgress, [0.15, 0.3, 0.5, 0.6], [0, 1, 1, 0]);
-  
-  // Image 3: Cargo Plane - fades in, then out
-  const opacity3 = useTransform(smoothProgress, [0.45, 0.6, 0.75, 0.85], [0, 1, 1, 0]);
-  
-  // Image 4: Fleet Vans - fades in and stays
-  const opacity4 = useTransform(smoothProgress, [0.7, 0.85, 1], [0, 1, 1]);
+  // Image 2: Cargo Plane - fades in and stays
+  const opacity2 = useTransform(smoothProgress, [0.4, 0.6, 1], [0, 1, 1]);
 
   // Text transitions - stage 1 (images 1&2) and stage 2 (images 3&4)
   const text1Opacity = useTransform(smoothProgress, [0, 0.4, 0.5], [1, 1, 0]);
@@ -81,9 +73,7 @@ const Hero = () => {
   // Image data array for clean mapping
   const images = [
     { src: heroWarehouse, alt: "Modern logistics warehouse", opacity: opacity1 },
-    { src: cargoShip, alt: "Cargo ship for sea freight", opacity: opacity2 },
-    { src: cargoPlane, alt: "Cargo plane for air freight", opacity: opacity3 },
-    { src: fleetVans, alt: "Delivery van fleet", opacity: opacity4 },
+    { src: cargoPlane, alt: "Cargo plane for air freight", opacity: opacity2 },
   ];
 
   return (
