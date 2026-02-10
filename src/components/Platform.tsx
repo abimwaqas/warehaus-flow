@@ -6,18 +6,28 @@ import platformDashboard from "@/assets/platform-dashboard.png";
 const features = [
   {
     icon: MapPin,
-    title: "Real-time Tracking",
-    description: "Monitor your shipments and inventory in real-time",
+    title: "📦 Orders",
+    description: "Manage all international orders from one dashboard",
   },
   {
     icon: Workflow,
-    title: "Automated Workflows",
-    description: "Streamline operations with intelligent automation",
+    title: "📊 Inventory",
+    description: "Live stock visibility across all warehouses",
   },
   {
     icon: BarChart3,
-    title: "Analytics Dashboard",
-    description: "Data-driven insights for better decision making",
+    title: "🚚 Smart Shipping",
+    description: "Best route selected based on cost & speed",
+  },
+  {
+    icon: MapPin,
+    title: "📍 Live Tracking",
+    description: "Track every order from pickup to delivery",
+  },
+  {
+    icon: BarChart3,
+    title: "📈 Insights",
+    description: "Delivery, COD, and cost performance at a glance",
   },
 ];
 

@@ -34,9 +34,7 @@ const Benefits = () => {
             About Us
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We're revolutionizing cross-border logistics management by providing businesses 
-            with a comprehensive platform that simplifies complex operations. With years of 
-            industry expertise, we deliver innovative solutions that help companies scale globally.
+            Fulflit is a cross-border logistics and fulfillment platform built to help SME e-commerce brands sell internationally with confidence. We enable businesses to reduce international shipping costs by up to 30%, deliver faster by positioning inventory closer to customers, and increase conversions through Cash on Delivery (COD) in key GCC markets. From store integration and inventory management to shipping, last-mile delivery, and COD remittance, Fulflit manages the entire fulfillment journey end to end. Our single, easy-to-use dashboard gives brands complete visibility into every order, from pickup to final delivery—without long-term contracts, heavy setup, or technical complexity. Designed to scale with growing businesses, Fulflit makes global selling simple, transparent, and reliable.
           </p>
         </motion.div>
 
