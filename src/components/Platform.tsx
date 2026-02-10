@@ -1,21 +1,21 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { MapPin, Workflow, BarChart3 } from "lucide-react";
+import { MapPin, Package, Boxes, Route, BarChart3 } from "lucide-react";
 import platformDashboard from "@/assets/platform-dashboard.png";
 
 const features = [
   {
-    icon: MapPin,
+    icon: Package,
     title: "Orders",
     description: "Manage all international orders from one dashboard",
   },
   {
-    icon: Workflow,
+    icon: Boxes,
     title: "Inventory",
     description: "Live stock visibility across all warehouses",
   },
   {
-    icon: BarChart3,
+    icon: Route,
     title: "Smart Shipping",
     description: "Best route selected based on cost & speed",
   },
