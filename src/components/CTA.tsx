@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const CTA = () => {
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-background">
+    <section className="py-12 lg:py-16 relative overflow-hidden bg-background">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" />
@@ -32,8 +32,12 @@ const CTA = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button variant="hero" size="xl">
-              Talk to a Fulfillment Expert
+            <Button 
+              variant="hero" 
+              size="xl"
+              onClick={() => window.open("https://core.fulflit.com/customer/register", "_blank")}
+            >
+              Sign Up Here
               <ArrowRight className="w-5 h-5" />
             </Button>
           </motion.div>

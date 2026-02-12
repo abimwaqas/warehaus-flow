@@ -156,34 +156,37 @@ const Hero = () => {
               </span>
             </motion.div>
 
-            {/* Text Stage 1 */}
-            <motion.div style={{ opacity: text1Opacity }} className="absolute max-w-3xl">
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
-                Sell Globally, Without{" "}
-                <span className="text-primary">Logistics Headaches</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed">
-                Fulflit enables SME e-commerce brands to sell globally with ease. Our end-to-end logistics platform covers warehousing & fulfilment, cross-border shipping, last-mile delivery, and COD — all in one place.
-              </p>
-            </motion.div>
+            {/* Text container with relative positioning for stacked stages */}
+            <div className="relative">
+              {/* Text Stage 1 */}
+              <motion.div style={{ opacity: text1Opacity }}>
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
+                  Sell Globally, Without{" "}
+                  <span className="text-primary">Logistics Headaches</span>
+                </h1>
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
+                  Fulflit enables SME e-commerce brands to sell globally with ease. Our end-to-end logistics platform covers warehousing & fulfilment, cross-border shipping, last-mile delivery, and COD — all in one place.
+                </p>
+              </motion.div>
 
-            {/* Text Stage 2 */}
-            <motion.div style={{ opacity: text2Opacity }} className="absolute max-w-3xl">
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
-                Built for{" "}
-                <span className="text-primary">Growing Brands</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed">
-                Expanding internationally is tough for small and mid-sized brands due to high shipping costs, delivery failures, COD challenges, and limited visibility. Fulflit solves this by giving SMEs access to regional warehouses, reliable delivery partners, and real-time tracking — without heavy upfront investment.
-              </p>
-            </motion.div>
+              {/* Text Stage 2 */}
+              <motion.div style={{ opacity: text2Opacity }} className="absolute inset-0">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
+                  Built for{" "}
+                  <span className="text-primary">Growing Brands</span>
+                </h1>
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
+                  Expanding internationally is tough for small and mid-sized brands due to high shipping costs, delivery failures, COD challenges, and limited visibility. Fulflit solves this by giving SMEs access to regional warehouses, reliable delivery partners, and real-time tracking — without heavy upfront investment.
+                </p>
+              </motion.div>
+            </div>
 
             {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-[280px] md:mt-[260px] lg:mt-[300px]"
+              className="relative mt-8"
             >
               <Button 
                 variant="hero" 
