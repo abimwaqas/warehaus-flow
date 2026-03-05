@@ -65,7 +65,7 @@ const Platform = () => {
 
   return (
     <section
-      className="py-32 lg:py-48 bg-secondary/30 overflow-hidden"
+      className="py-32 lg:py-32 bg-secondary/30 overflow-hidden"
       id="platform"
       ref={containerRef}>
       
