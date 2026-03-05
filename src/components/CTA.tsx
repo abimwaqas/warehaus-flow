@@ -20,7 +20,7 @@ const CTA = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground lg:text-4xl">
             End-to-End Fulfillment, Powered by Technology
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Fulflit is a technology platform that orchestrates your entire fulfillment journey — from order placement and inventory to shipping, delivery, COD, and returns. Our system connects warehouses, carriers, and last-mile partners into one intelligent workflow, giving you real-time visibility, automated decisions, and full control without operational complexity. Ready to Ship Beyond Borders? Fulflit makes international e-commerce simple, affordable, and scalable for SMEs in Pakistan and the Middle East. Built as a Platform, Trusted as a Partner.
           </p>
         </motion.div>
