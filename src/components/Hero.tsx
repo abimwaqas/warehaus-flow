@@ -165,10 +165,10 @@ const Hero = () => {
               <motion.div style={{
               opacity: text2Opacity
             }} className="absolute inset-0">
-                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
+                <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-white">
                   Built for{" "}
                   <span className="text-primary">Growing Brands</span>
-                </h1>
+                </h2>
                 <p className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">​Expanding internationally is hard for SMEs due to high shipping costs, delivery failures, COD issues, and limited visibility. Fulflit solves this with regional warehouses, reliable delivery partners, and real-time tracking — without heavy upfront investment.</p>
               </motion.div>
             </div>
