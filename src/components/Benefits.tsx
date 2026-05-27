@@ -39,26 +39,23 @@ const Benefits = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          )}
+          {benefits.map((benefit, index) => {
+            const Icon = benefit.icon;
+            return (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-center p-6"
+              >
+                <Icon className="w-10 h-10 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-foreground">{benefit.title}</h3>
+                <p className="text-muted-foreground">{benefit.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>);
