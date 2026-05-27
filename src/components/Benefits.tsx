@@ -39,26 +39,7 @@ const Benefits = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          )}
+          {benefits.map(() => null)}
         </div>
       </div>
     </section>);

@@ -140,6 +140,8 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2 text-foreground"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -204,6 +206,7 @@ const Navbar = () => {
           <div className="flex flex-col gap-4 py-4">
             <Input
               placeholder="Please enter your tracking number"
+              aria-label="Tracking number"
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleTrackOrder()}

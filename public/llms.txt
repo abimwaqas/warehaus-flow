@@ -1,0 +1,9 @@
+# Fulflit
+
+> Cross-border logistics and fulfillment platform built for SME e-commerce brands in Pakistan and the Middle East.
+
+Fulflit helps growing brands store inventory, ship orders, and deliver products across borders without complex logistics. The platform covers warehousing, bulk cross-border shipping, last-mile delivery, and Cash on Delivery (COD) remittance across the GCC, all from a single dashboard.
+
+## Pages
+
+- [Home](/): Overview of Fulflit's end-to-end fulfillment platform, services, and how it works.
