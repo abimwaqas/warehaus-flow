@@ -44,11 +44,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3 text-sm text-background/70">
                 <Mail className="w-4 h-4 text-primary" />
-                <span>hello@fulflit.com</span>
+                <span>info@fulflit.com</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-background/70">
                 <Phone className="w-4 h-4 text-primary" />
-                <span>+92 300 1234567</span>
+                <span>+92 339 0072155</span>
               </div>
             </div>
           </div>
