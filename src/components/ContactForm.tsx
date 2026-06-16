@@ -40,7 +40,7 @@ const ContactForm = () => {
       `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company || "Not provided"}\n\nMessage:\n${data.message}`
     );
     
-    window.location.href = `mailto:waqas@fulflit.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@fulflit.com?subject=${subject}&body=${body}`;
   };
 
   return (
